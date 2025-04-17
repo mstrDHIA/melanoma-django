@@ -11,10 +11,11 @@ model = YOLO('../assets/melanoma.pt')
 
 @csrf_exempt
 def predict(request):
-    if request.method == 'POST' and request.FILES['image']:
+    print("Request method:", request.FILES['file'])
+    if request.method == 'POST' and request.FILES['file']:
         # print(model)
         # # Read the image file from the request
-        image_file = request.FILES['image']
+        image_file = request.FILES['file']
         image = np.fromstring(image_file.read(), np.uint8)
         image = cv2.imdecode(image, cv2.IMREAD_COLOR)
 
